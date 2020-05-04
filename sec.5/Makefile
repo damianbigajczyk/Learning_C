@@ -1,0 +1,10 @@
+# -*- MakeFile -*-
+
+#select the compiler and flags
+CC = gcc
+CFLAGS = -Wall -g
+
+all: ex5.1 ex5.2 ex5.3 ex5.4 ex5.5 ex5.6 ex5.7 ex5.8 ex5.9
+
+clean:
+	rm -f ex5.1 ex5.2 ex5.3 ex5.4 ex5.5 ex5.6 ex5.7 ex5.8 ex5.9
