@@ -12,10 +12,12 @@ int main(int argc, char *argv[])
 	uint16_t space = 0;
 	bool flag = false;
 	char ch = '\0';
-	FILE *fp = fopen("tekst.txt", "r");
+	FILE *fp = fopen("file_1", "r");
 
-	if (fp == NULL)
+	if (fp == NULL) {
+		puts("Faile to open file: \"file_1\"");
 		return 0;
+	}
 
 	while ((ch = getc(fp)) != EOF) {
 		if (isalpha(ch)) {

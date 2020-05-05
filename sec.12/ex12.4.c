@@ -3,7 +3,7 @@
 int function(void)
 {
 	static int n;
-	int x;
+	int x; //the variable is intentionally uninitialized
 
 	printf("check %d\t%d\n", n, x);
 	return ++n;

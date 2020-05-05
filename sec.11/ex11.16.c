@@ -5,10 +5,10 @@ int main(int argc, char* argv[])
 {
 	char ch = '\0';
 	char choice = (argc > 1)? argv[1][1] : 'p';
-	FILE *fp = fopen("tekst.txt", "r");
+	FILE *fp = fopen("file_1", "r");
 
 	if (fp == NULL) {
-		puts("Failed to open file");
+		puts("Failed to open file: \"file_1\"");
 		return 0;
 	}
 
