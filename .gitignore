@@ -1,3 +1,5 @@
 *.o
 *.txt
 listing/
+test.c
+test

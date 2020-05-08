@@ -119,3 +119,40 @@ uint16_t countDays(uint8_t day, char *month, uint16_t year)
 
 	return days;
 }
+
+char *readIn(char *to, int n)
+{
+	char *result = NULL;
+	char *here = NULL;
+
+	result = fgets(to, n, stdin);
+	if (result) {
+		here = strchr(result, '\n');
+		if (here)
+			*here = '\0';
+		else
+			while (getchar() != '\n')
+				continue;
+	}
+	return result;
+}
+
+void sortTitle(struct book *lib, int n)
+{
+	struct book temp;
+	bool swap;
+	int i;
+	int rc = 0;
+	int times = n;
+
+	do {
+		for (i = 0, --times, swap = false; i < times; i++) {
+			if ((rc = strcmp(lib[i].title, lib[i+1].title)) > 0) {
+				temp = lib[i];
+				lib[i] = lib[i+1];
+				lib[i+1] = temp;
+				swap = true;
+			}
+		}
+	} while (swap);
+}
