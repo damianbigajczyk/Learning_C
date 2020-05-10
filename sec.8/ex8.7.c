@@ -11,6 +11,45 @@
 #define second 0.2
 #define third 0.25
 
+void menu(void);
+int getFirst(void);
+void calculate(uint16_t wage);
+
+int main(int argc, char *argv[])
+{
+	char choice = '\0';
+	uint8_t wage = 0;
+
+	menu();
+	while (1) {
+		choice = getFirst(); 
+		switch (choice) {
+			case 'A':
+				wage = wage_1;
+				break;
+			case 'B':
+				wage = wage_2;
+				break;
+			case 'C':
+				wage = wage_3;
+				break;
+			case 'D':
+				wage = wage_4;
+				break;
+			case 'Q':
+				return 0;
+			default:
+				puts("Enter the letter from 'A' to 'D' or 'Q' to exit");
+
+				continue;
+		}
+		calculate(wage);
+		menu();
+	}
+	
+	return 0;
+}
+
 void menu(void)
 {
 	puts("************************************************************");
@@ -69,39 +108,4 @@ void calculate(uint16_t wage)
 	printf("1) Gross pay: %.2u$\n2) Take-Home pay: %.2f$\n3) Tax: %.2f$\n",
 		       salary, salary - tax, tax);	
 
-}
-
-int main(int argc, char *argv[])
-{
-	char choice = '\0';
-	uint8_t wage = 0;
-
-	menu();
-	while (1) {
-		choice = getFirst(); 
-		switch (choice) {
-			case 'A':
-				wage = wage_1;
-				break;
-			case 'B':
-				wage = wage_2;
-				break;
-			case 'C':
-				wage = wage_3;
-				break;
-			case 'D':
-				wage = wage_4;
-				break;
-			case 'Q':
-				return 0;
-			default:
-				puts("Enter the letter from 'A' to 'D' or 'Q' to exit");
-
-				continue;
-		}
-		calculate(wage);
-		menu();
-	}
-	
-	return 0;
 }

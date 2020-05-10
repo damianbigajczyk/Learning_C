@@ -1,20 +1,7 @@
 #include <stdio.h>
+#include "function.h"
 
-void addArray(int *tab_1, int *tab_2, int *tab_3, int n_1, int n_2, int n_3)
-{
-	int min = n_1 > n_2 ? n_2 : n_1;
-	min = min > n_3 ? n_3 : min;
-
-	for(int i = 0; i < min; i++)
-		*(tab_3 + i) = *(tab_1 + i) + *(tab_2 + i);
-}
-
-void show(int *tab, int n)
-{
-	for(int i = 0; i < n; i++)
-		printf("%d\t", *(tab + i));
-	putchar('\n');
-}
+void show(int *tab, int n);
 
 int main(int argc, char *argv[])
 {
@@ -27,5 +14,12 @@ int main(int argc, char *argv[])
 
 
 	return 0;
+}
+
+void show(int *tab, int n)
+{
+	for(int i = 0; i < n; i++)
+		printf("%d\t", *(tab + i));
+	putchar('\n');
 }
 

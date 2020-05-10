@@ -7,10 +7,16 @@ int main(int argc, char *argv[])
 	char surname[20];
 
 	printf("Hi!, what is your name?\n");
-	scanf("%s", name);
+	while (scanf("%s", name) != 1) {
+		puts("Wrong input, try again!");
+		while (getchar() != '\n') {}
+	}
 
 	printf("Nice to meet you %s!\nWhat is your surname?\n", name);
-	scanf("%s", surname);
+	while (scanf("%s", surname) != 1) {
+		puts("Wrong input, try again!");
+		while (getchar() != '\n') {}
+	}
 	putchar('\n');
 
 	printf("%10s %20s\n%10ld %20ld\n\n", name, surname, strlen(name), strlen(surname));

@@ -4,6 +4,17 @@
 #include <ctype.h>
 #include <stdint.h>
 
+char *deleteSpace(char *s);
+
+int main(int argc, char *argv[])
+{
+	char s[] = "Ula ma     kota";
+
+	puts(deleteSpace(s));	
+
+	return 0;
+}
+
 char *deleteSpace(char *s)
 {
 	uint8_t count = 0;
@@ -31,15 +42,4 @@ char *deleteSpace(char *s)
 		*(s-(count--)) = '\0';
 
 	return temp;
-}
-
-
-
-int main(int argc, char *argv[])
-{
-	char s[] = "Ula ma     kota";
-
-	puts(deleteSpace(s));	
-
-	return 0;
 }

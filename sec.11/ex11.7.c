@@ -2,6 +2,22 @@
 #include <string.h>
 #include <stdint.h>
 
+char *copyString(char *s1, const char *s2, int n);
+
+int main(int argc, char* argv[])
+{
+	/**
+	 * Segmentation fault gdy char *s1 = "Damian"
+	 * wskznika nie mozna zmieniac tylko tablice
+	 * section 11 page 470
+	 **/
+	char s1[] = "Damian";
+	char s2[] = "Bigajczyk";
+
+	puts(copyString(s2,s1,10));
+	return 0;
+}
+
 char *copyString(char *s1, const char *s2, int n)
 {
 	uint8_t s1Length = strlen(s1);
@@ -29,18 +45,4 @@ char *copyString(char *s1, const char *s2, int n)
 		return s1;
 	}
 	return NULL;
-}
-
-int main(int argc, char* argv[])
-{
-	/**
-	 * Segmentation fault gdy char *s1 = "Damian"
-	 * wskznika nie mozna zmieniac tylko tablice
-	 * section 11 page 470
-	 **/
-	char s1[] = "Damian";
-	char s2[] = "Bigajczyk";
-
-	puts(copyString(s2,s1,10));
-	return 0;
 }

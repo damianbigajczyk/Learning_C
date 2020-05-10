@@ -1,20 +1,5 @@
 #include <stdio.h>
-
-void copy(double (*source)[5], int rows, double(*destiny)[5])
-{
-	for(int i = 0; i < rows; i++) {
-		for(int j = 0; j < 5; j++)
-			*(*(destiny + i) + j) = source[i][j];
-	}
-}
-void show(double (*tab)[5], int rows)
-{
-	for(int i = 0; i < rows; i++) {
-		for(int j = 0; j < 5; j++)
-			printf("%.2f\t", tab[i][j]);
-		putchar('\n');
-	}
-}
+#include "function.h"
 
 int main(int argc, char *argv[])
 {
@@ -25,13 +10,14 @@ int main(int argc, char *argv[])
 	};
 	double array[3][5];
 
-	show(rain, 3);
-	putchar('\n');
-	show(array, 3);
+	showArray_2(rain, 3);
 	putchar('\n');
 
-	copy(rain, 3, array);
-	show(array, 3);
+	showArray_2(array, 3);
+	putchar('\n');
+
+	cpyArray_4(rain, 3, array);
+	showArray_2(array, 3);
 
 	return 0;
 }

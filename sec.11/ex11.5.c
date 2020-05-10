@@ -3,7 +3,18 @@
 
 #define sentence "Dawno potem i nastepnie"
 
-char *findSign(const char *s, int c)
+char *findSign(char *s, int c);
+
+int main(int argc, char *argv[])
+{
+	char array[] = "Damian";
+
+	puts(findSign(array, 'i'));
+	puts(findSign(sentence, 'i'));
+	return 0;
+}
+
+char *findSign(char *s, int c)
 {
 	while (*s != '\0') {
 		if (*s == c) {
@@ -13,13 +24,4 @@ char *findSign(const char *s, int c)
 		}
 	}
 	return NULL;	
-}
-
-int main(int argc, char *argv[])
-{
-	char array[] = "Damian";
-
-	puts(findSign(array, 'i'));
-	puts(findSign(sentence, 'i'));
-	return 0;
 }

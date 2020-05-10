@@ -2,6 +2,20 @@
 #include <string.h>
 #include <stdbool.h>
 
+char *containString(char *s1, char *s2);
+
+int main(int argc, char* argv[])
+{
+	char s1[] = "Puuuuuuula";
+	char s2[] = "ul";
+	char *wsk = NULL;
+
+	wsk = containString(s1, s2);
+	if (wsk)
+		puts(wsk);
+	return 0;
+}
+
 char *containString(char *s1, char *s2)
 {
 	int i = 0;
@@ -25,16 +39,4 @@ char *containString(char *s1, char *s2)
 	}
 
 	return NULL;
-}
-
-int main(int argc, char* argv[])
-{
-	char s1[] = "Puuuuuuula";
-	char s2[] = "ul";
-	char *wsk = NULL;
-
-	wsk = containString(s1, s2);
-	if (wsk)
-		puts(wsk);
-	return 0;
 }

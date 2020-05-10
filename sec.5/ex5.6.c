@@ -1,12 +1,7 @@
 #include <stdio.h>
 #include <stdint.h>
 
-uint32_t sumPower(uint16_t a)
-{
-	if (a <= 2)
-		return a * a + 1;
-	return a * a + sumPower(--a);
-}	
+uint32_t sumPower(uint16_t a);
 
 int main(int argc, char *argv[])
 {
@@ -24,3 +19,14 @@ int main(int argc, char *argv[])
 
 	return 0;
 }
+
+uint32_t sumPower(uint16_t a)
+{
+	int sum = 0;
+	if (a <= 1)
+		return a;
+	else {
+		sum = a * a;
+		return sum + sumPower(--a);
+	}
+}	

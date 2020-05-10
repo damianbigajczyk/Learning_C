@@ -2,6 +2,19 @@
 #include <string.h>
 #include <stdint.h>
 
+uint32_t powerTen(uint8_t n);
+int toNumber(const char *str);
+
+int main(int argc, char *argv[])
+{
+	printf("%d\n", toNumber("1024"));
+	printf("%d\n", toNumber("9560"));
+	printf("%d\n", toNumber("10c25"));
+	printf("%d\n", toNumber("0"));
+
+	return 0;
+}
+
 uint32_t powerTen(uint8_t n)
 {
 	uint32_t result = 1;
@@ -25,14 +38,4 @@ int toNumber(const char *str)
 		}
 	}
 	return number;
-}
-
-int main(int argc, char *argv[])
-{
-	printf("%d\n", toNumber("1024"));
-	printf("%d\n", toNumber("9560"));
-	printf("%d\n", toNumber("10c25"));
-	printf("%d\n", toNumber("0"));
-
-	return 0;
 }

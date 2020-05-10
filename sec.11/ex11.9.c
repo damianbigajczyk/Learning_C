@@ -2,6 +2,17 @@
 #include <string.h>
 #include <stdint.h>
 
+char *reverse(char *s);
+
+int main(int argc, char *argv[])
+{
+	char name[] = "Damiann";
+
+	puts(reverse(name));
+
+	return 0;
+}
+
 char *reverse(char *s)
 {
 	uint8_t point = strlen(s);
@@ -13,14 +24,4 @@ char *reverse(char *s)
 		*(s + point) = temp;
 	}
 	return s;
-}
-
-
-int main(int argc, char *argv[])
-{
-	char name[] = "Damiann";
-
-	puts(reverse(name));
-
-	return 0;
 }

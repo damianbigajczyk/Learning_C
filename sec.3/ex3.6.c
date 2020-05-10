@@ -8,12 +8,18 @@ int main(int argc, char *argv[])
 	float volume = 0;
 
 	printf("Enter volume of water in liters, please (0 - the end):\n");
-	scanf("%f", &volume);
+	while (scanf("%f", &volume) != 1) {
+		puts("Wrong input, try again!");
+		while (getchar() != '\n') {}
+	}
 
 	while (volume) {
 		printf("You have %1.5e water molecules.\n", volume * l / m);
 		printf("Enter volume of water, please (0 - the end):\n");
-		scanf("%f", &volume);
+		while (scanf("%f", &volume) != 1) {
+			puts("Wrong input, try again!");
+			while (getchar() != '\n') {}
+		}
 	}
 
 	return 0;

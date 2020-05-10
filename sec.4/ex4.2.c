@@ -5,7 +5,10 @@ int main(int argc, char *argv[])
 	char name[10];
 
 	printf("What is your name?\n");
-	scanf("%s", name);
+	while (scanf("%s", name) != 1) {
+		puts("Wrong input, try again!");
+		while (getchar() != '\n') {}
+	}
 
 	printf("a) \"%s\"\n", name);
 	printf("b) \"%18s\"\n", name);

@@ -1,21 +1,5 @@
 #include <stdio.h>
-
-int diff(int *array, int size)
-{
-	int smallest = *array;
-	int largest = *array;
-	int i = 1;
-	for(i = 1; i < size -1; i++) {
-		if (*(array + i) < smallest)
-			smallest = *(array + i);
-	}
-	for(i = 1; i < size -1; i++) {
-		if (*(array + i) > largest)
-			largest = *(array + i);
-	}
-
-	return largest - smallest;
-}
+#include "function.h"
 
 int main(int argc, char *argv[])
 {
