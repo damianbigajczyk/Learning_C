@@ -156,3 +156,75 @@ void sortTitle(struct book *lib, int n)
 		}
 	} while (swap);
 }
+/******************* Exercise 14.4 ***************************/
+void displayPerson(const struct customer *Person)
+{
+	for (int i = 0; i < 3; i++) {
+		printf("%s, %s", Person->id.surname, Person->id.firstName);
+		(Person->id.secondName[0] != '\0') ? printf(" %c. -- ", Person->id.secondName[0]) :
+			printf(" -- ");
+		for (int j = 0; j < 11; j++)
+			printf("%d", Person->pesel[j]);
+		putchar('\n');
+		Person++;
+	}
+}
+void displayPerson_2(const struct customer Person[])
+{
+	for (int i = 0; i < 3; i++) {
+		printf("%s, %s", Person[i].id.surname, Person[i].id.firstName);
+		(Person[i].id.secondName[0] != '\0') ? printf(" %c. -- ", Person[i].id.secondName[0]) :
+			printf(" -- ");
+		for (int j = 0; j < 11; j++)
+			printf("%d", Person[i].pesel[j]);
+		putchar('\n');
+	}
+}
+
+/******************** Exercise 14.5 ***************************/
+void getGrade(struct student *data)
+{
+	int i, j;
+
+	for (i = 0; i < SIZE; i++, data++) {
+		printf("The results of %s %s\nEnter grades, please:\n", data->person.name, data->person.surname);
+		for (j = 0; j < GRADE; j++) {
+			printf("%d - ", j+1);
+			while (scanf("%f", &data->result[j]) != 1) {
+				puts("Wrong input, try again!");
+				while (getchar() != '\n') {}
+			}
+		}
+	}
+}
+void displayStudent(const struct student *data)
+{
+	int i, j;
+
+	for (i = 0; i < SIZE; i++, data++) {
+		printf("\t\t%s %s\nGrades:\t\t", data->person.name, data->person.surname);
+		for (j = 0; j < GRADE; j++)
+			printf("%.2f\t", data->result[j]);
+		printf("\nAverage grade: %2.f\n", data->avgGrade);
+	}
+}
+void countAvg(struct student *data)
+{
+	int i, j;
+	float sum = 0;
+
+	for (i = 0; i < SIZE; i++, data++) {
+		for (j = 0, sum = 0; j < GRADE; j++)
+			sum += data->result[j];
+		data->avgGrade = sum/GRADE;
+	}
+}
+void displayAvgAll(const struct student *data)
+{
+	int i;
+	float sum = 0;
+
+	for (i = 0; i < SIZE; i++, data++)
+		sum += data->avgGrade;
+	printf("Average all of students: %.2f\n", sum/SIZE);
+}
