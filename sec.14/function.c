@@ -228,3 +228,15 @@ void displayAvgAll(const struct student *data)
 		sum += data->avgGrade;
 	printf("Average all of students: %.2f\n", sum/SIZE);
 }
+
+/********************* Exercise 14.7 ****************************/
+char getFirst(void)
+{
+	char ch = getchar();
+	if (ch == '\n')
+		return ch;
+	while(getchar() != '\n') {}
+	if (isalpha(ch))
+		return tolower(ch);
+	return '\n';
+}

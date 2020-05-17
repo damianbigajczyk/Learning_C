@@ -3,7 +3,7 @@
 CC = gcc
 CFLAGS = -Wall -g
 
-all: ex14.1 ex14.2 ex14.3 ex14.4 ex14.5 ex14.6
+all: ex14.1 ex14.2 ex14.3 ex14.4 ex14.5 ex14.6 ex14.7 ex14.8 ex14.9 ex14.10
 
 ex14.1: ex14.1.o function.o
 	$(CC) ex14.1.o function.o -o ex14.1
@@ -41,12 +41,39 @@ ex14.6: ex14.6.o function_6.o
 ex14.6.o: ex14.6.c
 	$(CC) -c ex14.6.c
 
+ex14.7: ex14.7.o function.o
+	$(CC) ex14.7.o function.o -o ex14.7
+
+ex14.7.o: ex14.7.c
+	$(CC) -c ex14.7.c
+
+ex14.8: ex14.8.o colossus.o
+	$(CC) ex14.8.o colossus.o -o ex14.8
+
+ex14.8.o: ex14.8.c
+	$(CC) -c ex14.8.c
+
+colossus.o: colossus.c colossus.h
+	$(CC) -c colossus.c
+
+ex14.9: ex14.9.o colossus_2.o
+	$(CC) ex14.9.o colossus_2.o -o ex14.9
+
+ex14.9.o: ex14.9.c
+	$(CC) -c ex14.9.c
+
+colossus_2.o: colossus_2.c colossus_2.h
+	$(CC) -c colossus_2.c
+
 function_6.o: function_6.c function_6.h
 	$(CC) -c function_6.c
 
 function.o: function.c function.h
 	$(CC) -c function.c
 
+ex14.10: ex14.10.c
+	$(CC) ex14.10.c -o ex14.10 -lm
+
 clean:
 	rm -f *.o
-	rm -f ex14.1 ex14.2 ex14.3 ex14.4 ex14.5 ex14.6
+	rm -f ex14.1 ex14.2 ex14.3 ex14.4 ex14.5 ex14.6 ex14.7 ex14.8 ex14.9 ex14.10

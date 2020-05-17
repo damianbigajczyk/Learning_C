@@ -66,4 +66,6 @@ void displayStudent(const struct student *data);
 void countAvg(struct student *data);
 void displayAvgAll(const struct student *data);
 
+char getFirst(void);
+
 #endif
