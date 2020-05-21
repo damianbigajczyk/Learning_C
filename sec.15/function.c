@@ -1,8 +1,12 @@
 #include <stdio.h>
+#include <ctype.h>
 #include <string.h>
+#include <stdint.h>
 #include <limits.h>
 #include "function.h"
 
+const char *align[] = {"left", "center", "right"};
+const char *turnFont[] = {"Off", "On"};
 
 int convertBin(char *bin)
 {
@@ -77,4 +81,111 @@ void bitwiseOp(const char *bin1, const char* bin2, char mode)
 
 	}
 
+}
+
+int countBiteOn(int number)
+{
+	int counter = 0;
+
+	for( ; number != 0; number/=2)
+		counter += number % 2;
+	return counter;
+}
+_Bool getBit(int number, int n)
+{
+	return 0x1 & number >> n;
+}
+char turn(char ch, int n)
+{
+	_Bool temp;
+
+	for (int i = 0; i < n; i++) {
+		temp = 0x1 & (ch >> 7) + '0';	
+		ch <<= 1;
+		ch |= temp;
+	}
+
+	return ch;
+}
+int menu(struct setFont *font)
+{
+	char ch;
+
+	printf("\t%4s\t%5s\t%6s\t%3c\t%3c\t%3c\n", "Type", "Size", "Align", 'B', 'I', 'U');
+	printf("\t%d\t%d\t%6s\t%3s\t%3s\t%3s\n", font->type, font->size, align[font->align], turnFont[font->B],
+			turnFont[font->I], turnFont[font->U]);
+	puts("a) change font\tb) change size\t\tc) change align");
+	puts("d) switch Bold\te) switch Italic\tf) switch Underline\nk) Exit");
+
+	ch = tolower(getchar());
+	while (getchar() != '\n') {}
+	while (!strchr("abcdefk", ch)) {
+		puts("Enter a, b, c, d, e, f or k");
+		ch = tolower(getchar());
+		while (getchar() != '\n') {}
+	}
+	return ch - 97;
+}
+void setType(struct setFont *font)
+{
+	uint8_t type;
+
+	puts("Enter the type of font:");
+	while (scanf("%hhu", &type) != 1) {
+		puts("Wrong input, try again!");
+		while (getchar() != '\n') {}
+	}
+	while (getchar() != '\n') {}
+	font->type &= CLEAR;
+	font->type |= type;
+}
+void setSize(struct setFont *font)
+{
+	uint8_t size;
+
+	puts("Enter the size of font:");
+	while (scanf("%hhu", &size) != 1) {
+		puts("Wrong input, try again!");
+		while (getchar() != '\n') {}
+	}
+	while (getchar() != '\n') {}
+	font->size &= CLEAR;
+	font->size |= size;
+}
+void setAlign(struct setFont *font)
+{
+	char ch;
+	puts("Choose align:\nl) left\tc) center\tr) right");
+	ch = tolower(getchar());
+	while (getchar() != '\n') {}
+	while (!strchr("lcr", ch)) {
+		puts("Enter l, c or r");
+		ch = tolower(getchar());
+		while (getchar() != '\n') {}
+	}
+	switch (ch) {
+		case 'l':
+			font->align &= 0;
+			break;
+		case 'c':
+			font->align &= 0;
+			font->align |= 1;
+			break;
+		case 'r':	
+			font->align &= 0;
+			font->align |= 2;
+			break;
+	}
+}
+void setBold(struct setFont *font)
+{
+	font->B ^= ON;
+}
+void setItalic(struct setFont *font)
+{
+	font->I ^= ON;
+}
+void setUnderline(struct setFont *font)
+{
+	font->U ^= ON;
 }
