@@ -3,7 +3,7 @@
 CC = gcc
 CFLAGS = -Wall -g
 
-all: ex17.1 ex17.2 ex17.3 ex17.4
+all: ex17.1 ex17.2 ex17.3 ex17.4 ex17.5 ex17.6
 
 ex17.2: ex17.2.o list_1.o
 	$(CC) ex17.2.o list_1.o -o ex17.2
@@ -33,5 +33,5 @@ queue.o: queue.c queue.h
 	$(CC) -c queue.c
 clean:
 	rm -f *.o
-	rm -f ex17.1 ex17.2 ex17.3 ex17.4
+	rm -f ex17.1 ex17.2 ex17.3 ex17.4 ex17.5 ex17.6
 
