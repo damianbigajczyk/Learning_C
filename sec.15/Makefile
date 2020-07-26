@@ -1,9 +1,17 @@
 # -*- MakeFile -*-
+#  Usage:
+#  make 	# compile all binary
+#  make clean 	# remove all binaries and objects
+
+.PHONY : all clean
 
 CC = gcc
 CFLAGS = -Wall -g
+RM = -rm -vf *.o ${BIN}
 
-all: ex15.1 ex15.2 ex15.3 ex15.4 ex15.5 ex15.6 ex15.7
+BIN := $(patsubst %.c,%,$(wildcard ex15.*.c))
+
+all: ${BIN}
 
 ex15.1: ex15.1.o function.o
 	$(CC) ex15.1.o function.o -o ex15.1
@@ -54,5 +62,5 @@ function.o: function.c function.h
 	$(CC) -c function.c
 
 clean:
-	rm -f *.o
-	rm -f ex15.1 ex15.2 ex15.3 ex15.4 ex15.5 ex15.6 ex15.7
+	@echo "Cleaning up..."
+	@$(RM)

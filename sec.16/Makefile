@@ -1,16 +1,27 @@
 # -*- MakeFile -*-
+#  Usage:
+#  make 	# compile all binary
+#  make clean 	# remove all binaries and objects
+
+.PHONY : all clean
 
 CC = gcc
 CFLAGS = -Wall -g
+RM = -rm -vf *.o ${BIN}
 
-all: ex16.1 ex16.2 ex16.3 ex16.4 ex16.5 ex16.6 ex16.7
+SRC := $(wildcard *.c)
+BIN := $(SRC:%.c=%)
 
-ex16.3: ex16.3.c
-	$(CC) ex16.3.c -o ex16.3 -lm
+all: ${BIN}
+
+%: %.c
+	@echo "Building.."
+	$(CC) $(CGLAGS) $< -o $@ -lm
 
 clean:
-	rm -f *.o
-	rm -f ex16.1 ex16.2 ex16.3 ex16.4 ex16.5 ex16.6 ex16.7
+	@echo "Cleaning up..."
+	@$(RM)
+	
 
 
 

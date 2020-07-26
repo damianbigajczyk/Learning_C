@@ -1,22 +1,34 @@
 # -*- MakeFile -*-
+# Usage:
+# make		# compile all binary
+# make clean	# remove ALL binaries and objects
 
-#select the compiler and flags
+.PHONY : all clean
+
 CC = gcc
 CFLAGS = -Wall -g
 
-all: ex11.1 ex11.2 ex11.3 ex11.4 ex11.5 ex11.6 ex11.7 ex11.8 ex11.9 ex11.10\
-	ex11.11 ex11.12 ex11.13 ex11.14 ex11.15 ex11.16
+SRCS := $(filter-out function.c,$(wildcard *.c))
+BINS := $(SRCS:%.c=%)
+
+all : ${BINS}
+
+%: %.c
+	@echo "Building.."
+	${CC} $(CFLAGS) $< -o $@
 
 ex11.11: ex11.11.o function.o
-	$(CC) ex11.11.o function.o -o ex11.11
+	@echo "Linking.."
+	$(CC) $(CFLAGS) ex11.11.o function.o -o ex11.11
 
 ex11.11.o: ex11.11.c
-	$(CC) -c ex11.11.c
+	@echo "Creating object.."
+	$(CC) $(CFLAGS) -c ex11.11.c
 
 function.o: function.c function.h
-	$(CC) -c function.c
+	@echo "Creating object.."
+	$(CC) $(CFLAGS) -c function.c
 
 clean:
-	rm -f ex11.1 ex11.2 ex11.3 ex11.4 ex11.5 ex11.6 ex11.7 ex11.8 ex11.9 ex11.10\
-		ex11.11 ex11.12 ex11.13 ex11.14 ex11.15 ex11.16
-	rm -f *.o
+	@echo "Cleanin up..."
+	@-rm -v *.o ${BINS}

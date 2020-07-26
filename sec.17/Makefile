@@ -1,9 +1,17 @@
 # -*- MakeFile -*-
+#  Usage:
+#  make 	# compile all binary
+#  make clean 	# remove all binaries and objects
+
+.PHONY : all clean
 
 CC = gcc
 CFLAGS = -Wall -g
+RM = -rm -vf *.o ${BIN}
 
-all: ex17.1 ex17.2 ex17.3 ex17.4 ex17.5 ex17.6 ex17.7 ex17.8
+BIN := $(patsubst %.c,%,$(wildcard ex17.*.c))
+
+all: ${BIN}
 
 ex17.2: ex17.2.o list_1.o
 	$(CC) ex17.2.o list_1.o -o ex17.2
@@ -51,5 +59,5 @@ animalTree.o: animalTree.c animalTree.h
 	$(CC) -c animalTree.c
 
 clean:
-	rm -f *.o
-	rm -f ex17.1 ex17.2 ex17.3 ex17.4 ex17.5 ex17.6 ex17.7 ex17.8
+	@echo "Cleaning up..."
+	@$(RM)

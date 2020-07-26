@@ -1,10 +1,22 @@
 # -*- MakeFile -*-
+# Usage:
+# make          # compile all binary
+# make clean    # remove ALL binaries and objects
 
-#select the compiler and flags
+.PHONY : all clean
+
 CC = gcc
 CFLAGS = -Wall -g
 
-all: ex4.1 ex4.2 ex4.3 ex4.4 ex4.5 ex4.6 ex4.7 ex4.8
+SRCS := $(wildcard *.c)
+BINS := $(SRCS:%.c=%)
+
+all: ${BINS}
+
+%: %.c
+	@echo "Building.."
+	${CC} $(CFLAGS) $< -o $@
 
 clean:
-	rm -f ex4.1 ex4.2 ex4.3 ex4.4 ex4.5 ex4.6 ex4.7 ex4.8
+	@echo "Cleaning up..."
+	@-rm -v ${BINS}
